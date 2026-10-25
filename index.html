@@ -54,19 +54,27 @@ a{text-decoration:none;color:inherit}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 .envelope{position:relative;width:100%;height:290px;filter:drop-shadow(0 18px 30px rgba(70,72,40,.22))}
 .envelope-back{position:absolute;inset:0;background:linear-gradient(150deg,#E6D9BA,#D6C69C);border-radius:4px}
-.envelope-letter{position:absolute;left:7%;right:7%;top:16px;height:250px;padding:44px 10px 10px;text-align:center;background:var(--ivory);border:1px solid var(--line);border-radius:2px;z-index:2;box-shadow:0 6px 18px rgba(70,72,40,.18)}
+.envelope-letter{position:absolute;left:7%;right:7%;top:16px;height:210px;padding:40px 10px 10px;text-align:center;background:var(--ivory);border:1px solid var(--line);border-radius:2px;z-index:2;box-shadow:0 6px 18px rgba(70,72,40,.18)}
 .envelope-front{position:absolute;inset:0;z-index:3;border-radius:4px;background:linear-gradient(150deg,#EFE4CB,#DFCFA9);clip-path:polygon(0 0,50% 62%,100% 0,100% 100%,0 100%)}
 .envelope-flap{position:absolute;inset:0 0 auto;height:62%;z-index:4;transform-origin:top;background:linear-gradient(160deg,#F1E7CF,#DDCDA6);clip-path:polygon(0 0,100% 0,50% 100%)}
 .envelope-seal{position:absolute;left:50%;top:62%;width:68px;height:auto;margin:-34px 0 0 -34px;z-index:5;transition:opacity .4s;filter:drop-shadow(0 3px 6px rgba(70,72,40,.35))}
-.opening.is-opening .envelope-flap{animation:flap .7s ease-in-out forwards}
+.opening.is-opening .envelope-flap{animation:flap .7s ease-in-out forwards,envOut .6s 1.25s ease forwards}
+.opening.is-opening .envelope-back,.opening.is-opening .envelope-front{animation:envOut .6s 1.25s ease forwards}
+@keyframes envOut{to{opacity:0;translate:0 36px}}
 @keyframes flap{0%{transform:scaleY(1);z-index:4}49%{transform:scaleY(.02);z-index:4}50%{transform:scaleY(.02);z-index:1}100%{transform:scaleY(-1);z-index:1;filter:brightness(.96)}}
 .envelope-names{position:absolute;left:0;right:0;top:77%;z-index:5;text-align:center;transition:opacity .4s}
 .opening.is-opening .envelope-seal,.opening.is-opening .envelope-names{opacity:0;transition-duration:.25s}
-.opening.is-opening .envelope-letter{animation:letter 1.1s .55s cubic-bezier(.22,.8,.25,1) forwards}
-@keyframes letter{from{transform:translateY(0)}to{transform:translateY(calc(-1 * clamp(110px,50vh - 215px,205px))) scale(1.06)}}
+.opening.is-opening .envelope-letter{animation:letter 1.9s .55s cubic-bezier(.4,.1,.2,1) forwards}
+/* 0–35 %: sale del sobre (aún detrás del frente); 35 %: pasa al frente; 42–100 %: viaja al centro de la pantalla.
+   63px = distancia de la carta al centro de la pantalla (sobre de 290px + botón, centrados). */
+@keyframes letter{
+  0%{transform:translateY(0);z-index:2}
+  35%{transform:translateY(-110px);z-index:2;animation-timing-function:ease-in-out}
+  36%{transform:translateY(-110px);z-index:6}
+  44%{transform:translateY(-110px);z-index:6;animation-timing-function:cubic-bezier(.3,.1,.2,1)}
+  100%{transform:translateY(63px) scale(1.18);z-index:6}
+}
 .opening.is-opening #open-button{opacity:0;pointer-events:none;transition:opacity .3s}
-.opening .envelope-wrap{transition:transform 1s ease}
-.opening.is-leaving .envelope-wrap{transform:translateY(-14px) scale(1.04)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;padding:12px 26px;border:1px solid var(--gold);border-radius:99px;color:var(--plum);background:rgba(250,246,236,.8);letter-spacing:.18em;font:500 15px "Cormorant Garamond",serif;text-transform:uppercase;cursor:pointer;transition:.3s}
 .btn:hover,.btn:focus-visible{background:var(--blush);box-shadow:0 0 22px rgba(185,192,154,.55);outline:2px solid var(--gold);outline-offset:3px}
 .btn.solid{background:var(--mauve);color:var(--ivory);border-color:var(--mauve)}
@@ -481,15 +489,14 @@ function setPlaying(on) {
 document.getElementById("open-button").addEventListener("click", () => {
   opening.classList.add("is-opening");
   playFromStart().then(() => setPlaying(true)).catch(() => setPlaying(false));
-  // 0–0,7 s se abre la solapa; 0,55–1,65 s sube la carta; se deja leer hasta 2,6 s y entonces
-  // el sobre y la invitación hacen un fundido cruzado (sin cortes).
-  setTimeout(() => opening.classList.add("is-leaving"), 2300);
+  // 0–0,7 s se abre la solapa; la carta sale, el sobre se desvanece y la carta viaja al centro (hasta 2,45 s);
+  // se deja leer ~0,85 s y entonces la carta y la invitación hacen un fundido cruzado (sin cortes).
   setTimeout(() => {
     opening.classList.add("is-open");
     content.classList.add("active");
     menuButton.classList.add("visible");
     audioControls.classList.add("visible");
-  }, 2600);
+  }, 3300);
 });
 
 audioButton.addEventListener("click", () => {
