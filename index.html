@@ -122,7 +122,9 @@ a{text-decoration:none;color:inherit}
 .story{display:grid;gap:34px;align-items:center}
 .story-photo{position:relative;margin:0 auto;width:min(78vw,320px)}
 .story-photo img{display:block;width:100%;height:auto;border-radius:160px 160px 8px 8px;border:1px solid var(--line);box-shadow:0 18px 40px rgba(70,72,40,.22)}
-.story-photo .flower{position:absolute;pointer-events:none;border:0;border-radius:0;box-shadow:none}
+.story-photo .sprig{position:absolute;left:50%;width:84%;height:auto;transform:translateX(-50%);pointer-events:none;z-index:2;overflow:visible}
+.story-photo .sprig.top{top:-16px}
+.story-photo .sprig.bot{bottom:-16px;transform:translateX(-50%) scaleY(-1)}
 .quote{padding:6px 0 6px 22px;border-left:1px solid var(--gold);font:italic 500 clamp(1.6rem,5.6vw,2.1rem)/1.4 "Cormorant Garamond",Georgia,serif;color:var(--plum);white-space:pre-line}
 
 .row{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid rgba(241,234,217,.3);font-size:21px;letter-spacing:.03em;color:#FAF3E3}
@@ -154,6 +156,7 @@ dialog.lightbox button{position:absolute;top:-46px;right:0;color:var(--ivory);ba
 footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom:70px}
 .footer-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
 .footer-layer{position:absolute;inset:0;background:linear-gradient(180deg,rgba(47,50,32,.35),rgba(47,50,32,.9))}
+@media(min-width:900px){.photo.top-face{display:flex;align-items:flex-end;min-height:max(100vh,780px)}.photo.top-face>.inner{margin:0 auto;width:100%}#evento{padding-top:440px}footer.section{min-height:max(100vh,780px)}}
 @media(min-width:640px){.section{padding:120px 42px}.hero-copy{padding:3rem 8vw 4.5rem}.cols{grid-template-columns:1fr 1fr}.story{grid-template-columns:320px 1fr;gap:48px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
@@ -163,6 +166,14 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 <!-- Pétalo SVG reutilizable para la lluvia de pétalos. Las flores de adorno son recortes de img/ (acuarela). -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
+    <symbol id="sprig" viewBox="0 0 300 50">
+      <path d="M2 25C60 19 110 30 150 25S240 20 298 25" fill="none" stroke="#7E9167" stroke-width="1.3" stroke-linecap="round"/>
+      <g stroke="rgba(255,255,255,.55)" stroke-width=".5" opacity=".92"><use href="#lf" transform="translate(133.0 26.6) rotate(140.5) scale(0.93)" fill="url(#lfM)"/><use href="#lf" transform="translate(133.0 26.6) rotate(219.5) scale(0.93)" fill="url(#lfL)"/><use href="#lf" transform="translate(116.0 27.9) rotate(139.0) scale(0.86)" fill="url(#lfL)"/><use href="#lf" transform="translate(116.0 27.9) rotate(221.0) scale(0.86)" fill="url(#lfM)"/><use href="#lf" transform="translate(99.0 27.5) rotate(137.5) scale(0.79)" fill="url(#lfM)"/><use href="#lf" transform="translate(99.0 27.5) rotate(222.5) scale(0.79)" fill="url(#lfD)"/><use href="#lf" transform="translate(82.0 25.3) rotate(136.0) scale(0.72)" fill="url(#lfD)"/><use href="#lf" transform="translate(82.0 25.3) rotate(224.0) scale(0.72)" fill="url(#lfM)"/><use href="#lf" transform="translate(65.0 22.6) rotate(134.5) scale(0.65)" fill="url(#lfM)"/><use href="#lf" transform="translate(65.0 22.6) rotate(225.5) scale(0.65)" fill="url(#lfL)"/><use href="#lf" transform="translate(48.0 20.5) rotate(133.0) scale(0.58)" fill="url(#lfL)"/><use href="#lf" transform="translate(48.0 20.5) rotate(227.0) scale(0.58)" fill="url(#lfM)"/><use href="#lf" transform="translate(31.0 20.1) rotate(131.5) scale(0.51)" fill="url(#lfM)"/><use href="#lf" transform="translate(31.0 20.1) rotate(228.5) scale(0.51)" fill="url(#lfD)"/><use href="#lf" transform="translate(14.0 21.5) rotate(130.0) scale(0.44)" fill="url(#lfD)"/><use href="#lf" transform="translate(14.0 21.5) rotate(230.0) scale(0.44)" fill="url(#lfM)"/><circle cx="-2" cy="25" r="3.2" fill="#DDE5D3" stroke="#B9C7AE" stroke-width=".6"/><use href="#lf" transform="translate(167.0 21.4) rotate(-39.5) scale(0.93)" fill="url(#lfM)"/><use href="#lf" transform="translate(167.0 21.4) rotate(39.5) scale(0.93)" fill="url(#lfL)"/><use href="#lf" transform="translate(184.0 20.1) rotate(-41.0) scale(0.86)" fill="url(#lfL)"/><use href="#lf" transform="translate(184.0 20.1) rotate(41.0) scale(0.86)" fill="url(#lfM)"/><use href="#lf" transform="translate(201.0 20.5) rotate(-42.5) scale(0.79)" fill="url(#lfM)"/><use href="#lf" transform="translate(201.0 20.5) rotate(42.5) scale(0.79)" fill="url(#lfD)"/><use href="#lf" transform="translate(218.0 22.7) rotate(-44.0) scale(0.72)" fill="url(#lfD)"/><use href="#lf" transform="translate(218.0 22.7) rotate(44.0) scale(0.72)" fill="url(#lfM)"/><use href="#lf" transform="translate(235.0 25.4) rotate(-45.5) scale(0.65)" fill="url(#lfM)"/><use href="#lf" transform="translate(235.0 25.4) rotate(45.5) scale(0.65)" fill="url(#lfL)"/><use href="#lf" transform="translate(252.0 27.5) rotate(-47.0) scale(0.58)" fill="url(#lfL)"/><use href="#lf" transform="translate(252.0 27.5) rotate(47.0) scale(0.58)" fill="url(#lfM)"/><use href="#lf" transform="translate(269.0 27.9) rotate(-48.5) scale(0.51)" fill="url(#lfM)"/><use href="#lf" transform="translate(269.0 27.9) rotate(48.5) scale(0.51)" fill="url(#lfD)"/><use href="#lf" transform="translate(286.0 26.5) rotate(-50.0) scale(0.44)" fill="url(#lfD)"/><use href="#lf" transform="translate(286.0 26.5) rotate(50.0) scale(0.44)" fill="url(#lfM)"/><circle cx="302" cy="25" r="3.2" fill="#DDE5D3" stroke="#B9C7AE" stroke-width=".6"/></g>
+    </symbol>
+    <path id="lf" d="M0 0C5-8 19-8 28 0 19 8 5 8 0 0z"/>
+    <linearGradient id="lfD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4F6B3E"/><stop offset="1" stop-color="#7C9567"/></linearGradient>
+    <linearGradient id="lfM" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8FA67C"/><stop offset="1" stop-color="#B7C7A6"/></linearGradient>
+    <linearGradient id="lfL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C5D2B8"/><stop offset="1" stop-color="#E3EAD9"/></linearGradient>
     <symbol id="petal" viewBox="0 0 40 40">
       <path d="M20 2C32 8 38 22 20 38 2 22 8 8 20 2z" fill="currentColor"/>
       <path d="M20 8v26" stroke="#FAF6EC" stroke-opacity=".45" stroke-width="1"/>
@@ -272,8 +283,9 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
         <h2 class="title" style="margin-bottom:34px">Nuestra Historia</h2>
         <div class="story">
           <div class="story-photo">
+            <svg class="sprig top" viewBox="0 0 300 50" aria-hidden="true"><use href="#sprig"/></svg>
             <img src="img/historia.webp" alt="Óscar y Sandra abrazados al atardecer" loading="lazy">
-            <img class="flower" style="right:-30px;bottom:-26px;width:104px;height:auto" src="img/peonia.webp" alt="" aria-hidden="true">
+            <svg class="sprig bot" viewBox="0 0 300 50" aria-hidden="true"><use href="#sprig"/></svg>
           </div>
           <blockquote class="quote">Gracias por acompañarnos a escribir uno de los capítulos más hermosos de nuestra historia.</blockquote>
         </div>
@@ -281,7 +293,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
     </section>
 
     <!-- ============ EL EVENTO ============ -->
-    <section id="evento" class="section photo" style="--bg:url(img/velo.webp)">
+    <section id="evento" class="section photo" style="--bg:url(img/velo.webp)" data-face="0.5,0.28">
       <div class="inner wide reveal">
         <div class="center">
           <p class="eyebrow">Óscar &amp; Sandra</p>
@@ -343,7 +355,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
     </section>
 
     <!-- ============ DRESS CODE ============ -->
-    <section id="dress-code" class="section photo" style="--bg:url(img/abrazo.webp)">
+    <section id="dress-code" class="section photo top-face" style="--bg:url(img/abrazo.webp)" data-face="0.5,0.26">
       <svg class="petal" style="left:20%;animation-delay:-4s" aria-hidden="true"><use href="#petal"/></svg>
       <svg class="petal" style="left:70%;animation-delay:-10s;color:#E6D9BC" aria-hidden="true"><use href="#petal"/></svg>
       <div class="inner reveal center" style="max-width:560px">
@@ -403,10 +415,9 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
     </section>
 
     <!-- ============ CONFIRMAR ============ -->
-    <section id="confirmar" class="section photo" style="--bg:url(img/portada.webp)">
+    <section id="confirmar" class="section photo top-face" style="--bg:url(img/portada.webp)" data-face="0.52,0.41">
       <div class="inner reveal center">
-        <div class="ornament" aria-hidden="true"><div class="gold-line"></div><img src="img/peonia.webp" width="40" height="42" alt=""><div class="gold-line"></div></div>
-        <p class="eyebrow" style="margin-top:22px">Reserva la fecha</p>
+        <p class="eyebrow">Reserva la fecha</p>
         <h2 class="title">¿Nos Acompañas?</h2>
         <p class="body" style="max-width:520px;margin:0 auto 32px;color:#FAF3E3">Confirma tu asistencia por WhatsApp.</p>
         <a class="btn solid" id="rsvp-link" href="https://wa.me/573133610794?text=Hola%20%C3%93scar%20y%20Sandra%2C%20confirmo%20mi%20asistencia%20a%20su%20boda%20el%2028%20de%20noviembre.%20Mi%20nombre%20es%3A%20" target="_blank" rel="noopener noreferrer">Confirmar asistencia</a>
@@ -416,7 +427,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 
   <!-- ============ DESPEDIDA ============ -->
   <footer class="section photo">
-    <img class="footer-photo" src="img/velo.webp" alt="" loading="lazy">
+    <img class="footer-photo" src="img/velo.webp" alt="" loading="lazy" data-face="0.5,0.28">
     <div class="footer-layer"></div>
     <svg class="petal" style="left:22%;animation-delay:-3s" aria-hidden="true"><use href="#petal"/></svg>
     <svg class="petal" style="left:64%;animation-delay:-8s;color:#E6D9BC" aria-hidden="true"><use href="#petal"/></svg>
@@ -504,6 +515,39 @@ function updateCountdowns() {
 }
 updateCountdowns();
 setInterval(updateCountdowns, 1000);
+
+// En escritorio, encuadra cada foto de fondo para que los rostros (data-face = x,y en fracción de la foto)
+// queden a data-at px (por defecto 200) del borde superior de la sección, sobre el texto.
+const faceEls = [...document.querySelectorAll("[data-face]")];
+const faceSizes = {};
+function whenSized(src, cb) {
+  if (faceSizes[src]) return cb(faceSizes[src]);
+  const im = new Image();
+  im.onload = () => { faceSizes[src] = { w: im.naturalWidth, h: im.naturalHeight }; cb(faceSizes[src]); };
+  im.src = src;
+}
+function placeFaces() {
+  const wide = innerWidth >= 900;
+  faceEls.forEach(el => {
+    const isImg = el.tagName === "IMG";
+    if (!wide) { if (isImg) el.style.objectPosition = ""; else el.style.backgroundPosition = ""; return; }
+    const src = isImg ? el.getAttribute("src") : el.style.getPropertyValue("--bg").match(/url\(["']?([^"')]+)/)[1];
+    whenSized(src, ({ w, h }) => {
+      const [fx, fy] = el.dataset.face.split(",").map(Number);
+      const at = Number(el.dataset.at || 200);
+      const r = el.getBoundingClientRect(), cw = r.width, ch = r.height;
+      const k = Math.max(cw / w, ch / h), sw = w * k, sh = h * k;
+      const x = Math.min(0, Math.max(cw - sw, cw / 2 - fx * sw));
+      const y = Math.min(0, Math.max(ch - sh, at - fy * sh));
+      if (isImg) el.style.objectPosition = `${x}px ${y}px`;
+      else el.style.backgroundPosition = `0 0, ${x}px ${y}px`;
+    });
+  });
+}
+placeFaces();
+addEventListener("resize", placeFaces);
+if (window.ResizeObserver) { const ro = new ResizeObserver(placeFaces); faceEls.forEach(el => ro.observe(el.tagName === "IMG" ? el.parentElement : el)); }
+document.fonts && document.fonts.ready.then(placeFaces);
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
