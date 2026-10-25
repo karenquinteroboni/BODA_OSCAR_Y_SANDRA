@@ -39,6 +39,11 @@ a{text-decoration:none;color:inherit}
 .corner.tr{top:0;right:0;transform:scaleX(-1)}
 .corner.bl{bottom:0;left:0;transform:scaleX(-1)}
 .corner.br{bottom:0;right:0}
+.corner.tr.v,.corner.bl.v{transform:scaleY(-1)}
+.side{display:none;position:absolute;width:min(22vw,230px);height:auto;pointer-events:none;z-index:1;user-select:none}
+.side.l{left:-40px;top:34%}
+.side.r{right:-40px;top:62%;transform:scaleX(-1)}
+@media(min-width:900px){.side{display:block}}
 .section:has(>.corner.tl),.section:has(>.corner.tr){padding-top:150px}
 .section:has(>.corner.bl),.section:has(>.corner.br){padding-bottom:150px}
 
@@ -242,8 +247,10 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
   <main>
     <!-- ============ BIENVENIDA ============ -->
     <section id="celebracion" class="section blush">
-      <img class="corner tr" src="img/flora-superior.webp" alt="" aria-hidden="true">
-      <img class="corner bl" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="corner tl" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner tr v" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="corner bl v" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner br" src="img/flora-inferior.webp" alt="" aria-hidden="true">
       <div class="inner reveal center">
         <div class="ornament" aria-hidden="true"><div class="gold-line"></div><img src="img/peonia.webp" width="40" height="42" alt=""><div class="gold-line"></div></div>
         <p class="eyebrow" style="margin-top:22px">Con amor</p>
@@ -255,6 +262,11 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
     <!-- ============ NUESTRA HISTORIA ============ -->
     <section id="historia" class="section lav">
       <img class="corner tl" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner tr v" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="corner bl v" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner br" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="side l" src="img/flora-lateral.webp" alt="" aria-hidden="true">
+      <img class="side r" src="img/flora-lateral.webp" alt="" aria-hidden="true">
       <div class="inner reveal">
         <p class="eyebrow">Óscar &amp; Sandra</p>
         <h2 class="title" style="margin-bottom:34px">Nuestra Historia</h2>
@@ -300,7 +312,12 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 
     <!-- ============ UBICACIÓN ============ -->
     <section id="ubicacion" class="section blush">
-      <img class="corner tr" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner tl" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner tr v" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="corner bl v" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner br" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="side l" src="img/flora-lateral.webp" alt="" aria-hidden="true">
+      <img class="side r" src="img/flora-lateral.webp" alt="" aria-hidden="true">
       <div class="inner wide reveal">
         <div class="center">
           <p class="eyebrow">Ubicación</p>
@@ -340,7 +357,12 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 
     <!-- ============ GALERÍA ============ -->
     <section id="galeria" class="section lav">
-      <img class="corner bl" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="corner tl" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner tr v" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="corner bl v" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner br" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="side l" src="img/flora-lateral.webp" alt="" aria-hidden="true">
+      <img class="side r" src="img/flora-lateral.webp" alt="" aria-hidden="true">
       <div class="inner reveal center">
         <p class="eyebrow">Nuestros momentos</p>
         <h2 class="title">Galería</h2>
@@ -359,6 +381,10 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 
     <!-- ============ LLUVIA DE SOBRES ============ -->
     <section id="lluvia-de-sobres" class="section blush">
+      <img class="corner tl" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner tr v" src="img/flora-inferior.webp" alt="" aria-hidden="true">
+      <img class="corner bl v" src="img/flora-superior.webp" alt="" aria-hidden="true">
+      <img class="corner br" src="img/flora-inferior.webp" alt="" aria-hidden="true">
       <svg class="petal" style="left:8%;animation-delay:0s;color:#B3BB8A" aria-hidden="true"><use href="#petal"/></svg>
       <svg class="petal" style="left:30%;animation-delay:-7s;color:#E6D9BC" aria-hidden="true"><use href="#petal"/></svg>
       <svg class="petal" style="left:55%;animation-delay:-3s;color:#B3BB8A" aria-hidden="true"><use href="#petal"/></svg>
