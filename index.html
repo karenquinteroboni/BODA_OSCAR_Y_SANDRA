@@ -100,7 +100,16 @@ a{text-decoration:none;color:inherit}
 
 /* Secciones */
 .hero{min-height:100vh;min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--plum)}
-.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% center}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 30%}
+.hero-bg{display:none;position:absolute;inset:-6%;width:112%;height:112%;object-fit:cover;filter:blur(30px) brightness(.85) saturate(1.05)}
+@media(min-width:900px){
+  .hero-bg{display:block}
+  .hero{align-items:center}
+  .hero .hero-photo{inset:0 0 0 auto;width:46%;object-position:center 30%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%);mask-image:linear-gradient(90deg,transparent,#000 16%)}
+  .hero .hero-shade{background:linear-gradient(90deg,rgba(47,50,32,.55),rgba(47,50,32,0) 60%),linear-gradient(180deg,rgba(47,50,32,.15),rgba(47,50,32,0) 40%)}
+  .hero .hero-copy{width:54%;padding:3rem 3vw}
+  .hero .frame{max-width:440px}
+}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(47,50,32,.18),rgba(47,50,32,0) 35%,rgba(47,50,32,.78) 100%)}
 .hero-copy{position:relative;z-index:2;width:100%;padding:2rem 1.4rem 3.4rem}
 .frame{max-width:560px;margin:auto;padding:26px 22px;text-align:center;border:1px solid rgba(241,234,217,.7);background:rgba(47,50,32,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
@@ -156,7 +165,7 @@ a{text-decoration:none;color:inherit}
 .gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
 .gallery button{display:block;width:100%;aspect-ratio:4/5;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:none;cursor:zoom-in;box-shadow:0 8px 20px rgba(70,72,40,.14)}
 .gallery img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.gallery button:nth-child(1) img{object-position:center 40%}.gallery button:nth-child(2) img{object-position:center 25%}.gallery button:nth-child(3) img{object-position:center 45%}.gallery button:nth-child(4) img{object-position:center 25%}
+.gallery button:nth-child(1) img{object-position:center 18%}.gallery button:nth-child(2) img{object-position:center 22%}.gallery button:nth-child(3) img{object-position:center 30%}.gallery button:nth-child(4) img{object-position:center 28%}
 .gallery button:hover img,.gallery button:focus-visible img{transform:scale(1.04)}
 .gallery button:focus-visible{outline:2px solid var(--mauve);outline-offset:3px}
 dialog.lightbox{max-width:94vw;max-height:94vh;padding:0;border:0;background:transparent;overflow:visible}
@@ -252,7 +261,8 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 <div id="site-content">
   <!-- ============ PORTADA ============ -->
   <header id="inicio" class="hero">
-    <img class="hero-photo" src="img/portada.webp" alt="Óscar y Sandra, los novios, besándose frente al altar de la iglesia">
+    <img class="hero-bg" src="img/velo.webp" alt="" aria-hidden="true">
+    <img class="hero-photo" src="img/velo.webp" alt="Óscar y Sandra sonriendo muy juntos bajo el velo de la novia">
     <div class="hero-shade"></div>
     <svg class="petal" style="left:15%;animation-delay:-2s" aria-hidden="true"><use href="#petal"/></svg>
     <svg class="petal" style="left:48%;animation-delay:-9s;color:#E9DDC3;width:16px;height:16px" aria-hidden="true"><use href="#petal"/></svg>
@@ -298,7 +308,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
         <div class="story">
           <div class="story-photo">
             <svg class="sprig top" viewBox="0 0 300 50" aria-hidden="true"><use href="#sprig"/></svg>
-            <img src="img/historia.webp" alt="Óscar y Sandra abrazados al atardecer" loading="lazy">
+            <img src="img/atardecer.webp" alt="Óscar y Sandra abrazados, de pie, al atardecer" loading="lazy">
             <svg class="sprig bot" viewBox="0 0 300 50" aria-hidden="true"><use href="#sprig"/></svg>
           </div>
           <blockquote class="quote">Gracias por acompañarnos a escribir uno de los capítulos más hermosos de nuestra historia.</blockquote>
@@ -307,7 +317,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
     </section>
 
     <!-- ============ EL EVENTO ============ -->
-    <section id="evento" class="section photo" style="--bg:url(img/velo.webp)" data-face="0.5,0.28">
+    <section id="evento" class="section photo" style="--bg:url(img/romantico.webp)" data-face="0.72,0.30">
       <div class="inner wide reveal">
         <div class="center">
           <p class="eyebrow">Óscar &amp; Sandra</p>
@@ -369,7 +379,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
     </section>
 
     <!-- ============ DRESS CODE ============ -->
-    <section id="dress-code" class="section photo top-face" style="--bg:url(img/abrazo.webp)" data-face="0.5,0.26">
+    <section id="dress-code" class="section photo top-face" style="--bg:url(img/iglesia.webp)" data-face="0.58,0.36">
       <svg class="petal" style="left:20%;animation-delay:-4s" aria-hidden="true"><use href="#petal"/></svg>
       <svg class="petal" style="left:70%;animation-delay:-10s;color:#E6D9BC" aria-hidden="true"><use href="#petal"/></svg>
       <div class="inner reveal center" style="max-width:560px">
@@ -393,10 +403,10 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
         <p class="eyebrow">Nuestros momentos</p>
         <h2 class="title">Galería</h2>
         <div class="gallery">
-          <button type="button" data-full="img/velo.webp" aria-label="Ampliar foto: el beso bajo el velo"><img src="img/velo.webp" alt="Óscar y Sandra besándose bajo el velo" loading="lazy"></button>
-          <button type="button" data-full="img/abrazo.webp" aria-label="Ampliar foto: abrazo al atardecer"><img src="img/abrazo.webp" alt="Sandra abraza a Óscar al atardecer" loading="lazy"></button>
-          <button type="button" data-full="img/baile.webp" aria-label="Ampliar foto: beso en el salón"><img src="img/baile.webp" alt="Óscar y Sandra en un beso con luces cálidas de fondo" loading="lazy"></button>
-          <button type="button" data-full="img/historia.webp" aria-label="Ampliar foto: retrato espalda con espalda"><img src="img/historia.webp" alt="Retrato de los novios, ella recostada en su hombro" loading="lazy"></button>
+          <button type="button" data-full="img/atardecer.webp" aria-label="Ampliar foto: retrato al atardecer"><img src="img/atardecer.webp" alt="Óscar y Sandra abrazados, de pie, al atardecer" loading="lazy"></button>
+          <button type="button" data-full="img/abrazo.webp" aria-label="Ampliar foto: abrazo mejilla con mejilla"><img src="img/abrazo.webp" alt="Sandra abraza a Óscar por detrás, mejilla con mejilla" loading="lazy"></button>
+          <button type="button" data-full="img/velo.webp" aria-label="Ampliar foto: bajo el velo"><img src="img/velo.webp" alt="Óscar y Sandra sonriendo bajo el velo de la novia" loading="lazy"></button>
+          <button type="button" data-full="img/romantico.webp" aria-label="Ampliar foto: retrato con el ramo"><img src="img/romantico.webp" alt="Óscar y Sandra con el ramo de la novia al atardecer" loading="lazy"></button>
         </div>
       </div>
     </section>
@@ -429,7 +439,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
     </section>
 
     <!-- ============ CONFIRMAR ============ -->
-    <section id="confirmar" class="section photo top-face" style="--bg:url(img/portada.webp)" data-face="0.52,0.41">
+    <section id="confirmar" class="section photo top-face" style="--bg:url(img/abrazo.webp)" data-face="0.44,0.25">
       <div class="inner reveal center">
         <p class="eyebrow">Reserva la fecha</p>
         <h2 class="title">¿Nos Acompañas?</h2>
@@ -441,7 +451,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 
   <!-- ============ DESPEDIDA ============ -->
   <footer class="section photo">
-    <img class="footer-photo" src="img/velo.webp" alt="" loading="lazy" data-face="0.5,0.28">
+    <img class="footer-photo" src="img/atardecer.webp" alt="" loading="lazy" data-face="0.47,0.20">
     <div class="footer-layer"></div>
     <svg class="petal" style="left:22%;animation-delay:-3s" aria-hidden="true"><use href="#petal"/></svg>
     <svg class="petal" style="left:64%;animation-delay:-8s;color:#E6D9BC" aria-hidden="true"><use href="#petal"/></svg>
@@ -532,8 +542,8 @@ function updateCountdowns() {
 updateCountdowns();
 setInterval(updateCountdowns, 1000);
 
-// En escritorio, encuadra cada foto de fondo para que los rostros (data-face = x,y en fracción de la foto)
-// queden a data-at px (por defecto 200) del borde superior de la sección, sobre el texto.
+// Encuadra cada foto de fondo para que los rostros (data-face = x,y en fracción de la foto) queden centrados
+// horizontalmente y, en escritorio, a data-at px (por defecto 200) del borde superior, sobre el texto.
 const faceEls = [...document.querySelectorAll("[data-face]")];
 const faceSizes = {};
 function whenSized(src, cb) {
@@ -546,11 +556,10 @@ function placeFaces() {
   const wide = innerWidth >= 900;
   faceEls.forEach(el => {
     const isImg = el.tagName === "IMG";
-    if (!wide) { if (isImg) el.style.objectPosition = ""; else el.style.backgroundPosition = ""; return; }
     const src = isImg ? el.getAttribute("src") : el.style.getPropertyValue("--bg").match(/url\(["']?([^"')]+)/)[1];
     whenSized(src, ({ w, h }) => {
       const [fx, fy] = el.dataset.face.split(",").map(Number);
-      const at = Number(el.dataset.at || 200);
+      const at = wide ? Number(el.dataset.at || 200) : Math.min(el.getBoundingClientRect().height * 0.32, 260);
       const r = el.getBoundingClientRect(), cw = r.width, ch = r.height;
       const k = Math.max(cw / w, ch / h), sw = w * k, sh = h * k;
       const x = Math.min(0, Math.max(cw - sw, cw / 2 - fx * sw));
