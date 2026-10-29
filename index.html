@@ -61,7 +61,7 @@ a{text-decoration:none;color:inherit}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 .envelope{position:relative;width:100%;height:290px;filter:drop-shadow(0 18px 30px rgba(70,72,40,.22))}
 .envelope-back{position:absolute;inset:0;background:linear-gradient(150deg,#E6D9BA,#D6C69C);border-radius:4px}
-.envelope-letter{position:absolute;left:7%;right:7%;top:16px;height:210px;padding:40px 10px 10px;text-align:center;background:var(--ivory);border:1px solid var(--line);border-radius:2px;z-index:2;box-shadow:0 6px 18px rgba(70,72,40,.18)}
+.envelope-letter{position:absolute;left:7%;right:7%;top:16px;height:256px;padding:34px 10px 14px;text-align:center;background:var(--ivory);border:1px solid var(--line);border-radius:2px;z-index:2;box-shadow:0 6px 18px rgba(70,72,40,.18)}
 .envelope-front{position:absolute;inset:0;z-index:3;border-radius:4px;background:linear-gradient(150deg,#EFE4CB,#DFCFA9);clip-path:polygon(0 0,50% 62%,100% 0,100% 100%,0 100%)}
 .envelope-flap{position:absolute;inset:0 0 auto;height:62%;z-index:4;transform-origin:top;background:linear-gradient(160deg,#F1E7CF,#DDCDA6);clip-path:polygon(0 0,100% 0,50% 100%)}
 .envelope-seal{position:absolute;left:50%;top:62%;width:68px;height:auto;margin:-34px 0 0 -34px;z-index:5;transition:opacity .4s;filter:drop-shadow(0 3px 6px rgba(70,72,40,.35))}
@@ -79,9 +79,29 @@ a{text-decoration:none;color:inherit}
   35%{transform:translateY(-110px);z-index:2;animation-timing-function:ease-in-out}
   36%{transform:translateY(-110px);z-index:6}
   44%{transform:translateY(-110px);z-index:6;animation-timing-function:cubic-bezier(.3,.1,.2,1)}
-  100%{transform:translateY(63px) scale(1.18);z-index:6}
+  100%{transform:translateY(var(--travel,63px)) scale(1.18);z-index:6}
 }
-.opening.is-opening #open-button{opacity:0;pointer-events:none;transition:opacity .3s}
+.opening.is-opening #open-button,.opening.is-opening .guest-box,.opening.is-opening .link-btn{opacity:0;pointer-events:none;transition:opacity .3s}
+.opening .envelope-wrap{gap:18px}
+.guest-box{position:relative;width:100%;z-index:8}
+.guest-field{position:relative}
+#guest-input{width:100%;min-height:50px;padding:12px 18px;border:1px solid var(--gold);border-radius:99px;background:rgba(250,246,236,.92);color:var(--plum);font:500 19px "Cormorant Garamond",Georgia,serif;text-align:center}
+#guest-input::placeholder{color:#7d7a5d}
+#guest-input:focus{outline:2px solid var(--mauve);outline-offset:2px}
+#guest-list{position:absolute;left:6px;right:6px;top:calc(100% + 6px);max-height:232px;overflow-y:auto;margin:0;padding:6px;list-style:none;background:var(--ivory);border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 34px rgba(70,72,40,.28);z-index:9}
+#guest-list li{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:10px 14px;border-radius:10px;font-size:19px;line-height:1.25;color:var(--plum);cursor:pointer}
+#guest-list li small{flex:none;font-size:15px;color:var(--mauve);font-weight:700}
+#guest-list li[aria-selected="true"],#guest-list li:hover{background:var(--blush)}
+#guest-list .empty{cursor:default;color:var(--ink);justify-content:center;text-align:center}
+#guest-list .empty:hover{background:none}
+.guest-status{min-height:26px;margin-top:8px;text-align:center;font-size:18px;font-weight:700;color:var(--mauve)}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.link-btn{background:none;border:0;padding:6px 10px;color:var(--ink);font:500 17px "Cormorant Garamond",Georgia,serif;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.link-btn:focus-visible{outline:2px solid var(--mauve);outline-offset:3px;border-radius:6px}
+.card-guest{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.cg-label{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--mauve)}
+.cg-name{margin-top:3px;font-size:21px;line-height:1.15;font-weight:700;color:var(--plum)}
+.cg-n{margin-top:3px;font-size:17px;color:var(--ink)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;padding:12px 26px;border:1px solid var(--gold);border-radius:99px;color:var(--plum);background:rgba(250,246,236,.8);letter-spacing:.18em;font:500 15px "Cormorant Garamond",serif;text-transform:uppercase;cursor:pointer;transition:.3s}
 .btn:hover,.btn:focus-visible{background:var(--blush);box-shadow:0 0 22px rgba(185,192,154,.55);outline:2px solid var(--gold);outline-offset:3px}
 .btn.solid{background:var(--mauve);color:var(--ivory);border-color:var(--mauve)}
@@ -227,13 +247,22 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
         <p class="eyebrow" style="font-size:12px;letter-spacing:.38em">NOS CASAMOS</p>
         <p class="script" style="font-size:38px;line-height:1.1;margin:10px 0;white-space:nowrap;color:var(--plum)">Óscar &amp; Sandra</p>
         <p class="disp" style="font-size:14px;letter-spacing:.28em;color:var(--mauve)">28 · 11 · 2026</p>
+        <div class="card-guest" id="card-guest" hidden><p class="cg-label">Invitación para</p><p class="cg-name" id="cg-name"></p><p class="cg-n" id="cg-n"></p></div>
       </div>
       <div class="envelope-front"></div>
       <div class="envelope-flap"></div>
       <div class="envelope-names"><p class="script" style="font-size:34px;line-height:1;color:var(--plum)">Óscar &amp; Sandra</p><p class="disp" style="font-size:12px;letter-spacing:.3em;margin-top:8px;color:var(--mauve)">28 · 11 · 2026</p></div>
       <img class="envelope-seal" src="img/peonia.webp" alt="" aria-hidden="true">
     </div>
-    <button id="open-button" class="btn" type="button">Abrir invitación</button>
+    <div class="guest-box" id="guest-box">
+      <div class="guest-field">
+        <input id="guest-input" type="text" role="combobox" aria-expanded="false" aria-controls="guest-list" aria-autocomplete="list" aria-label="Busca tu nombre" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Busca tu nombre o apellido">
+        <ul id="guest-list" role="listbox" hidden></ul>
+      </div>
+      <p id="guest-status" class="guest-status" role="status" aria-live="polite"></p>
+    </div>
+    <button id="open-button" class="btn" type="button" disabled>Abrir invitación</button>
+    <button id="no-name" class="link-btn" type="button">No encuentro mi nombre</button>
   </div>
 </section>
 
@@ -348,7 +377,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
             <a class="btn" href="https://maps.app.goo.gl/f1XapNJ4KKPqtjiT9" target="_blank" rel="noopener noreferrer">Ver recepción</a>
           </article>
         </div>
-        <p class="note center" style="margin-top:30px">Invitación personal: podrán asistir únicamente los invitados relacionados en tu tarjeta.</p>
+        <p class="note center" id="note-guest" style="margin-top:30px">Invitación personal: podrán asistir únicamente los invitados relacionados en tu tarjeta.</p>
       </div>
     </section>
 
@@ -449,7 +478,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
       <div class="inner reveal center">
         <p class="eyebrow">Reserva la fecha</p>
         <h2 class="title">¿Nos Acompañas?</h2>
-        <p class="body" style="max-width:520px;margin:0 auto 32px;color:#FAF3E3">Confirma tu asistencia por WhatsApp.</p>
+        <p class="body" id="rsvp-text" style="max-width:520px;margin:0 auto 32px;color:#FAF3E3">Confirma tu asistencia por WhatsApp.</p>
         <a class="btn solid" id="rsvp-link" href="https://wa.me/573133610794?text=Hola%20%C3%93scar%20y%20Sandra%2C%20confirmo%20mi%20asistencia%20a%20su%20boda%20el%2028%20de%20noviembre.%20Mi%20nombre%20es%3A%20" target="_blank" rel="noopener noreferrer">Confirmar asistencia</a>
       </div>
     </section>
@@ -468,6 +497,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
   </footer>
 </div>
 
+<script src="invitados.js"></script>
 <script>
 const opening = document.getElementById("opening");
 const content = document.getElementById("site-content");
@@ -503,7 +533,92 @@ function setPlaying(on) {
   audioButton.setAttribute("aria-pressed", String(on));
 }
 
-document.getElementById("open-button").addEventListener("click", () => {
+// ---------- Invitados: búsqueda por nombre, cupos y mensaje de WhatsApp ----------
+const GUESTS = window.INVITADOS || [];
+const normalize = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+const guestIndex = GUESTS.map(g => ({ g, words: normalize(g.nombre).split(" ") }));
+const guestInput = document.getElementById("guest-input");
+const guestList = document.getElementById("guest-list");
+const guestStatus = document.getElementById("guest-status");
+const openButton = document.getElementById("open-button");
+const cardGuest = document.getElementById("card-guest");
+const rsvpLink = document.getElementById("rsvp-link");
+let guest = null, results = [], active = -1;
+
+const people = n => `${n} ${n === 1 ? "persona" : "personas"}`;
+const quota = g => people(g.cupos) + (g.cupos > 1 && g.con ? ` (con ${g.con})` : "");
+const WA = "https://wa.me/573133610794?text=";
+
+function applyGuest() {
+  const note = document.getElementById("note-guest"), text = document.getElementById("rsvp-text");
+  if (guest) {
+    document.getElementById("cg-name").textContent = guest.nombre;
+    document.getElementById("cg-n").textContent = quota(guest);
+    cardGuest.hidden = false;
+    note.textContent = `Invitación personal para ${guest.nombre}: ${quota(guest)}. Podrán asistir únicamente los invitados relacionados en tu tarjeta.`;
+    text.textContent = `Tu invitación es para ${quota(guest)}. Confirma tu asistencia por WhatsApp.`;
+    const msg = `Hola Óscar y Sandra, soy ${guest.nombre}. Confirmo mi asistencia a su boda el 28 de noviembre de 2026. Mi tarjeta es para ${quota(guest)}.` + (guest.cupos > 1 ? " Asistiremos: " : "");
+    rsvpLink.href = WA + encodeURIComponent(msg);
+  } else {
+    cardGuest.hidden = true;
+    note.textContent = "Invitación personal: podrán asistir únicamente los invitados relacionados en tu tarjeta.";
+    text.textContent = "Confirma tu asistencia por WhatsApp.";
+    rsvpLink.href = WA + encodeURIComponent("Hola Óscar y Sandra, confirmo mi asistencia a su boda el 28 de noviembre de 2026. Mi nombre es: ");
+  }
+}
+function search(q) {
+  const tokens = normalize(q).split(" ").filter(Boolean);
+  if (!tokens.length) return [];
+  return guestIndex.filter(({ words }) => tokens.every(t => words.some(w => w.startsWith(t)))).map(x => x.g).slice(0, 6);
+}
+function closeList() { guestList.hidden = true; guestInput.setAttribute("aria-expanded", "false"); guestInput.removeAttribute("aria-activedescendant"); active = -1; }
+function renderList() {
+  guestList.innerHTML = "";
+  if (!guestInput.value.trim()) return closeList();
+  if (!results.length) {
+    const li = document.createElement("li"); li.className = "empty"; li.textContent = "No encontramos ese nombre. Prueba con tu apellido.";
+    guestList.appendChild(li);
+  }
+  results.forEach((g, i) => {
+    const li = document.createElement("li"); li.id = "guest-opt-" + i; li.setAttribute("role", "option");
+    li.setAttribute("aria-selected", String(i === active));
+    li.innerHTML = "<span></span><small></small>";
+    li.firstChild.textContent = g.nombre; li.lastChild.textContent = people(g.cupos);
+    li.addEventListener("pointerdown", e => { e.preventDefault(); chooseGuest(g); });
+    guestList.appendChild(li);
+  });
+  guestList.hidden = false; guestInput.setAttribute("aria-expanded", "true");
+  if (active >= 0) guestInput.setAttribute("aria-activedescendant", "guest-opt-" + active); else guestInput.removeAttribute("aria-activedescendant");
+}
+function chooseGuest(g, silent) {
+  guest = g; guestInput.value = g.nombre; closeList();
+  guestStatus.textContent = `✓ Tu invitación es para ${quota(g)}`;
+  openButton.disabled = false; applyGuest();
+  try { localStorage.setItem("boda-invitado", g.nombre); } catch (e) {}
+  if (!silent) openButton.focus();
+}
+guestInput.addEventListener("input", () => {
+  if (guest) { guest = null; openButton.disabled = true; guestStatus.textContent = ""; applyGuest(); }
+  results = search(guestInput.value); active = results.length ? 0 : -1; renderList();
+});
+guestInput.addEventListener("keydown", e => {
+  if (e.key === "ArrowDown" && results.length) { e.preventDefault(); active = (active + 1) % results.length; renderList(); }
+  else if (e.key === "ArrowUp" && results.length) { e.preventDefault(); active = (active - 1 + results.length) % results.length; renderList(); }
+  else if (e.key === "Enter" && !guestList.hidden && results[active]) { e.preventDefault(); chooseGuest(results[active]); }
+  else if (e.key === "Escape") closeList();
+});
+guestInput.addEventListener("blur", () => setTimeout(closeList, 120));
+try {
+  const saved = localStorage.getItem("boda-invitado"), g = GUESTS.find(x => x.nombre === saved);
+  if (g) chooseGuest(g, true);
+} catch (e) {}
+applyGuest();
+
+function openInvitation() {
+  if (opening.classList.contains("is-opening")) return;
+  // Distancia que debe recorrer la carta para quedar en el centro de la pantalla
+  const lr = document.querySelector(".envelope-letter").getBoundingClientRect();
+  opening.style.setProperty("--travel", Math.round(innerHeight / 2 - (lr.top + lr.height / 2)) + "px");
   opening.classList.add("is-opening");
   playFromStart().then(() => setPlaying(true)).catch(() => setPlaying(false));
   // 0–0,7 s se abre la solapa; la carta sale, el sobre se desvanece y la carta viaja al centro (hasta 2,45 s);
@@ -514,6 +629,11 @@ document.getElementById("open-button").addEventListener("click", () => {
     menuButton.classList.add("visible");
     audioControls.classList.add("visible");
   }, 3300);
+}
+openButton.addEventListener("click", () => { if (guest) openInvitation(); });
+// Quien no encuentra su nombre entra igual; el mensaje de WhatsApp le pedirá su nombre.
+document.getElementById("no-name").addEventListener("click", () => {
+  guest = null; guestInput.value = ""; applyGuest(); openInvitation();
 });
 
 audioButton.addEventListener("click", () => {
