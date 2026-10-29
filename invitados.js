@@ -16,6 +16,13 @@ window.INVITADOS = [
   { nombre: "Angélica García Varón", cupos: 1 },
   { nombre: "Sandra Magnolia Rivera", cupos: 1 },
   { nombre: "Rubén Dario Vergara", cupos: 1 },
+  { nombre: "Orlando Bonilla Campos", cupos: 2, con: "su señora" },
+  { nombre: "Norma Gineth Bonilla Orjuela", cupos: 2, con: "su hija" },
+  { nombre: "Edwin Alberto Guzmán", cupos: 1 },
+  { nombre: "Mileidy Bonilla Orjuela", cupos: 2 },
+  { nombre: "Alberto Jiménez", cupos: 1 },
+  { nombre: "Diego Fernando Ducuara", cupos: 1 },
+  { nombre: "Daniel Mauricio Ducuara", cupos: 1 },
 
   // Lista manuscrita. PENDIENTE: no traía cantidades; se asumió cupos: 1 para todos. Confirmar con los novios.
   { nombre: "Anatol Díaz", cupos: 1 },
