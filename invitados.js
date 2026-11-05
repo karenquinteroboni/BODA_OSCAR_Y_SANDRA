@@ -45,5 +45,6 @@ window.INVITADOS = [
   { nombre: "Diana Rincón", cupos: 1 },
 
   // Agregados después por los novios
-  { nombre: "Carolina Díaz", cupos: 2, con: "su hijo" }
+  { nombre: "Carolina Díaz", cupos: 2, con: "su hijo" },
+  { nombre: "Fabiana Andrea Cárdenas", cupos: 1 }
 ];
