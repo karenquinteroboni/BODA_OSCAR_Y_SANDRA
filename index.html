@@ -502,7 +502,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 </div>
 
 <!-- Al editar invitados.js, sube el número de ?v= para que navegadores y CDN no sirvan la lista vieja -->
-<script src="invitados.js?v=20261110"></script>
+<script src="invitados.js?v=20261111"></script>
 <script>
 const opening = document.getElementById("opening");
 const content = document.getElementById("site-content");
@@ -550,6 +550,7 @@ const cardGuest = document.getElementById("card-guest");
 const rsvpLink = document.getElementById("rsvp-link");
 let guest = null, results = [], active = -1;
 
+const fullName = g => (g.titulo ? g.titulo + " " : "") + g.nombre;   // con título (Sr./Sra.) para mostrar
 const people = n => `${n} ${n === 1 ? "persona" : "personas"}`;
 const quota = g => people(g.cupos) + (g.cupos > 1 && g.con ? ` (con ${g.con})` : "");
 const WA = "https://wa.me/573133610794?text=";
@@ -557,10 +558,10 @@ const WA = "https://wa.me/573133610794?text=";
 function applyGuest() {
   const note = document.getElementById("note-guest"), text = document.getElementById("rsvp-text");
   if (guest) {
-    document.getElementById("cg-name").textContent = guest.nombre;
+    document.getElementById("cg-name").textContent = fullName(guest);
     document.getElementById("cg-n").textContent = quota(guest);
     cardGuest.hidden = false;
-    note.textContent = `Invitación personal para ${guest.nombre}: ${quota(guest)}. Podrán asistir únicamente los invitados relacionados en tu tarjeta.`;
+    note.textContent = `Invitación personal para ${fullName(guest)}: ${quota(guest)}. Podrán asistir únicamente los invitados relacionados en tu tarjeta.`;
     text.textContent = `Tu invitación es para ${quota(guest)}. Confirma tu asistencia por WhatsApp.`;
     const msg = `Hola Óscar y Sandra, soy ${guest.nombre}. Confirmo mi asistencia a su boda el 28 de noviembre de 2026. Mi tarjeta es para ${quota(guest)}.` + (guest.cupos > 1 ? " Asistiremos: " : "");
     rsvpLink.href = WA + encodeURIComponent(msg);
@@ -588,7 +589,7 @@ function renderList() {
     const li = document.createElement("li"); li.id = "guest-opt-" + i; li.setAttribute("role", "option");
     li.setAttribute("aria-selected", String(i === active));
     li.innerHTML = "<span></span><small></small>";
-    li.firstChild.textContent = g.nombre; li.lastChild.textContent = people(g.cupos);
+    li.firstChild.textContent = fullName(g); li.lastChild.textContent = people(g.cupos);
     li.addEventListener("pointerdown", e => { e.preventDefault(); chooseGuest(g); });
     guestList.appendChild(li);
   });
@@ -596,10 +597,10 @@ function renderList() {
   if (active >= 0) guestInput.setAttribute("aria-activedescendant", "guest-opt-" + active); else guestInput.removeAttribute("aria-activedescendant");
 }
 function chooseGuest(g, silent) {
-  guest = g; guestInput.value = g.nombre; closeList();
+  guest = g; guestInput.value = fullName(g); closeList();
   guestStatus.textContent = `✓ Tu invitación es para ${quota(g)}`;
   openButton.disabled = false; applyGuest();
-  try { localStorage.setItem("boda-invitado", g.nombre); } catch (e) {}
+  try { localStorage.setItem("boda-invitado", fullName(g)); } catch (e) {}
   if (!silent) openButton.focus();
 }
 guestInput.addEventListener("input", () => {
@@ -614,7 +615,7 @@ guestInput.addEventListener("keydown", e => {
 });
 guestInput.addEventListener("blur", () => setTimeout(closeList, 120));
 try {
-  const saved = localStorage.getItem("boda-invitado"), g = GUESTS.find(x => x.nombre === saved);
+  const saved = localStorage.getItem("boda-invitado"), g = GUESTS.find(x => fullName(x) === saved);
   if (g) chooseGuest(g, true);
 } catch (e) {}
 applyGuest();

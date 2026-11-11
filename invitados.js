@@ -1,4 +1,5 @@
 // Lista de invitados de la boda de Óscar & Sandra.
+//   titulo: opcional, "Sr." o "Sra."; se muestra antes del nombre, pero el mensaje de WhatsApp usa solo el nombre.
 //   nombre: como aparece en la tarjeta (se busca sin tildes ni mayúsculas).
 //   cupos:  número de personas para las que es la invitación (incluye a quien la recibe).
 //   con:    opcional, quiénes lo acompañan; se muestra entre paréntesis en el mensaje.
@@ -48,5 +49,17 @@ window.INVITADOS = [
   { nombre: "Carolina Díaz", cupos: 2, con: "su hijo" },
   { nombre: "Fabiana Andrea Cárdenas", cupos: 1 },
   { nombre: "Abelardo Campos", cupos: 2, con: "su señora" },
-  { nombre: "Herley Campos", cupos: 4, con: "su señora e hijos" }
+  { nombre: "Herley Campos", cupos: 4, con: "su señora e hijos" },
+
+  // Tercera tanda de WhatsApp (con título; solo nombre = 1 cupo)
+  { titulo: "Sra.", nombre: "Aura Rosa Carvajal", cupos: 1 },
+  { titulo: "Sra.", nombre: "Mileidy Monroy", cupos: 1 },
+  { titulo: "Sr.", nombre: "Edilberto Rayo", cupos: 2, con: "su señora" },
+  { titulo: "Sra.", nombre: "Bertha Cecilia Rada", cupos: 1 },
+  { titulo: "Sra.", nombre: "Jennifer Orjuela Reina", cupos: 2 },
+  { titulo: "Sr.", nombre: "Wilmer Muñoz Rojas", cupos: 1 },
+  { titulo: "Sra.", nombre: "Marvi Alexandra Gutiérrez", cupos: 1 },
+  { titulo: "Sra.", nombre: "Yeny Astrid Leiva Ramírez", cupos: 1 },
+  { titulo: "Sr.", nombre: "Yeferson Aldana", cupos: 1 },
+  { titulo: "Sr.", nombre: "Álvaro Moreno", cupos: 1 }
 ];
