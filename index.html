@@ -502,7 +502,7 @@ footer.section{min-height:600px;display:flex;align-items:flex-end;padding-bottom
 </div>
 
 <!-- Al editar invitados.js, sube el número de ?v= para que navegadores y CDN no sirvan la lista vieja -->
-<script src="invitados.js?v=20261111"></script>
+<script src="invitados.js?v=20261112"></script>
 <script>
 const opening = document.getElementById("opening");
 const content = document.getElementById("site-content");
@@ -575,7 +575,7 @@ function applyGuest() {
 function search(q) {
   const tokens = normalize(q).split(" ").filter(Boolean);
   if (!tokens.length) return [];
-  return guestIndex.filter(({ words }) => tokens.every(t => words.some(w => w.startsWith(t)))).map(x => x.g).slice(0, 6);
+  return guestIndex.filter(({ words }) => tokens.every(t => words.some(w => w.startsWith(t)))).map(x => x.g).slice(0, 14);
 }
 function closeList() { guestList.hidden = true; guestInput.setAttribute("aria-expanded", "false"); guestInput.removeAttribute("aria-activedescendant"); active = -1; }
 function renderList() {

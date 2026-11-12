@@ -61,5 +61,24 @@ window.INVITADOS = [
   { titulo: "Sra.", nombre: "Marvi Alexandra Gutiérrez", cupos: 1 },
   { titulo: "Sra.", nombre: "Yeny Astrid Leiva Ramírez", cupos: 1 },
   { titulo: "Sr.", nombre: "Yeferson Aldana", cupos: 1 },
-  { titulo: "Sr.", nombre: "Álvaro Moreno", cupos: 1 }
+  { titulo: "Sr.", nombre: "Álvaro Moreno", cupos: 1 },
+
+  // Cuarta tanda de WhatsApp
+  { titulo: "Sra.", nombre: "Jimena Cardona", cupos: 2 },
+  { titulo: "Sra.", nombre: "Mónica Quintero", cupos: 2, con: "su esposo" },
+  { titulo: "Sra.", nombre: "Paula Andrea Granada", cupos: 1 },
+  { titulo: "Sr.", nombre: "Sergio Badel", cupos: 1 },
+  { titulo: "Sra.", nombre: "Maira Muñoz", cupos: 1 },
+  { titulo: "Sr.", nombre: "Carlos Gaviria", cupos: 2, con: "su señora" },
+  { titulo: "Sra.", nombre: "Karen Morales", cupos: 2 },
+  { titulo: "Sr.", nombre: "Nelson Ramírez", cupos: 2, con: "su señora" },
+  { titulo: "Sra.", nombre: "Elizabeth Orjuela López", cupos: 1 },
+  { titulo: "Sr.", nombre: "Juan Carlos Gaviria Orjuela", cupos: 1 },
+  { titulo: "Sr.", nombre: "Jorge Gaviria Orjuela", cupos: 1 },
+  { titulo: "Sra.", nombre: "Lorena Villa Orjuela", cupos: 2 },
+  { titulo: "Sr.", nombre: "Fernando Labrador", cupos: 2, con: "su señora" },
+  { titulo: "Sr.", nombre: "Manuel Orjuela", cupos: 2, con: "su señora" },
+  { titulo: "Sra.", nombre: "Argelia Orjuela", cupos: 1 },
+  { titulo: "Sr.", nombre: "Nicolás Rojas", cupos: 1 },
+  { titulo: "Sr.", nombre: "Luis Alfonso Vivas Rico", cupos: 1 }
 ];
